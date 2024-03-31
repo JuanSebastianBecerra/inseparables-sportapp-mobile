@@ -3,4 +3,8 @@
     <string name="ingresar">Ingresar</string>
     <string name="usuario">Usuario</string>
     <string name="contrasenia">Contraseña</string>
+    <string name="abrir">Abrir</string>
+    <string name="cerrar">Cerrar</string>
+    <string name="inicio">Inicio</string>
+    <string name="cerrar_sesion">Cerrar sesión</string>
 </resources>
