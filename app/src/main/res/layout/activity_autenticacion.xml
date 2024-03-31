@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:ignore="UselessParent">
+
+        <TextView
+            android:id="@+id/textViewTitulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="52sp"
+            android:textColor="@color/BlueGreen_10"
+            android:text="@string/app_name" />
+
+        <EditText
+            android:id="@+id/editTextUsusario"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:height="48dp"
+            android:hint="@string/usuario"
+            android:layout_marginTop="40dp"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/editTextContrasenia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:height="48dp"
+            android:hint="@string/contrasenia"
+            android:layout_marginTop="20dp"
+            android:inputType="textPassword" />
+
+        <Button
+            android:id="@+id/buttonIngresar"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="40dp"
+            android:backgroundTint="@color/BlueGreen_6"
+            android:layout_height="wrap_content"
+            android:text="@string/ingresar" />
+    </LinearLayout>
+
+</RelativeLayout>
