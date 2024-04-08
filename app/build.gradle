@@ -1,11 +1,67 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'jacoco'
+}
+
+task jacocoTestReport(type: JacocoReport,
+        dependsOn: ['testDebugUnitTest']) {
+    group = "Reporting"
+    description = "Generate Jacoco coverage reports after running tests."
+
+    reports {
+        csv.enabled false
+        xml.enabled false
+        html {
+            enabled true
+            destination file("${buildDir}/coverage-report")
+        }
+    }
+
+    def fileFilter = ['androidx/**/*.*',
+                      '**/view/*.*',
+                      '**/data/*.*',
+                      '**/data/model/*.*',
+                      '**/generated/callback/*.*',
+                      '**/lambda$*.class',
+                      '**/lambda.class',
+                      '**/*lambda.class',
+                      '**/*lambda*.class']
+
+    def debugTree = fileTree(dir:
+            "${buildDir}/intermediates/javac/debug/classes",
+            excludes: fileFilter
+    )
+
+    def mainSrc = "/src/main/java"
+
+    sourceDirectories.from = files([mainSrc])
+
+    classDirectories.from = files([debugTree])
+    executionData.from = fileTree(dir: "${buildDir}", includes:[
+            "/jacoco/testDebugUnitTest.exec"])
+}
+
+
+task jacocoTestCoverageVerification(type: JacocoCoverageVerification, dependsOn: 'jacocoTestReport') {
+    violationRules {
+        failOnViolation = true
+        rule {
+            limit {
+                minimum = 0.7
+            }
+        }
+    }
+}
+
+tasks.withType(Test) {
+    jacoco.includeNoLocationClasses = true
+    jacoco.excludes = ['jdk.internal.*']
 }
 
 android {
     namespace 'com.example.inseparables_sportapp_mobile'
-    compileSdk 33
+    compileSdk 23
 
     defaultConfig {
         applicationId "com.example.inseparables_sportapp_mobile"
@@ -22,23 +78,41 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+        debug {
+            testCoverageEnabled true
+        }
+    }
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+            unitTests.returnDefaultValues = true
+        }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    defaultConfig {
+        testInstrumentationRunner "org.junit.runners.JUnit4" // Use JUnit 4 for instrumentation tests
+        testInstrumentationRunnerArgument("runnerBuilder", "de.mannodermaus.junit5.AndroidJUnit5Builder") // Use JUnit 5 for local unit tests
+    }
+
 }
 
 dependencies {
-
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.9.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
+    testRuntimeOnly 'org.junit.vintage:junit-vintage-engine:5.7.2'
+    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.2' // For testing coroutines (optional)
+    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.2' // For testing Android components with coroutines (optional)
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 }
