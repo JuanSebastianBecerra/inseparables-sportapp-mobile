@@ -1,4 +1,4 @@
-name: Generated APK - SportApp
+name: Generar y subir APK
 
 env:
   main_project_module: app
