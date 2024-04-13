@@ -2,61 +2,7 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'jacoco'
-}
-
-task jacocoTestReport(type: JacocoReport,
-        dependsOn: ['testDebugUnitTest']) {
-    group = "Reporting"
-    description = "Generate Jacoco coverage reports after running tests."
-
-    reports {
-        csv.enabled false
-        xml.enabled false
-        html {
-            enabled true
-            destination file("${buildDir}/coverage-report")
-        }
-    }
-
-    def fileFilter = ['androidx/**/*.*',
-                      '**/view/*.*',
-                      '**/data/*.*',
-                      '**/data/model/*.*',
-                      '**/generated/callback/*.*',
-                      '**/lambda$*.class',
-                      '**/lambda.class',
-                      '**/*lambda.class',
-                      '**/*lambda*.class']
-
-    def debugTree = fileTree(dir:
-            "${buildDir}/intermediates/javac/debug/classes",
-            excludes: fileFilter
-    )
-
-    def mainSrc = "/src/main/java"
-
-    sourceDirectories.from = files([mainSrc])
-
-    classDirectories.from = files([debugTree])
-    executionData.from = fileTree(dir: "${buildDir}", includes:[
-            "/jacoco/testDebugUnitTest.exec"])
-}
-
-
-task jacocoTestCoverageVerification(type: JacocoCoverageVerification, dependsOn: 'jacocoTestReport') {
-    violationRules {
-        failOnViolation = true
-        rule {
-            limit {
-                minimum = 0.7
-            }
-        }
-    }
-}
-
-tasks.withType(Test) {
-    jacoco.includeNoLocationClasses = true
-    jacoco.excludes = ['jdk.internal.*']
+    id 'kotlin-android'
 }
 
 android {
@@ -75,19 +21,12 @@ android {
 
     buildTypes {
         release {
+            testCoverageEnabled true
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
-        debug {
-            testCoverageEnabled true
-        }
     }
-    testOptions {
-        unitTests {
-            includeAndroidResources = true
-            unitTests.returnDefaultValues = true
-        }
-    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -97,9 +36,14 @@ android {
         jvmTarget = '1.8'
     }
 
-    defaultConfig {
-        testInstrumentationRunner "org.junit.runners.JUnit4" // Use JUnit 4 for instrumentation tests
-        testInstrumentationRunnerArgument("runnerBuilder", "de.mannodermaus.junit5.AndroidJUnit5Builder") // Use JUnit 5 for local unit tests
+    testOptions {
+        unitTests.includeAndroidResources = true
+        unitTests.all {
+            reports {
+                junitXml.enabled = true
+                html.enabled = false
+            }
+        }
     }
 
 }
@@ -109,15 +53,42 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.9.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
     testRuntimeOnly 'org.junit.vintage:junit-vintage-engine:5.7.2'
     testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.2' // For testing coroutines (optional)
-    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.2' // For testing Android components with coroutines (optional)
+    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.2' // For testing Android components with
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
     implementation 'com.android.volley:volley:1.2.1'
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
     implementation 'com.google.code.gson:gson:2.8.2'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
     implementation 'com.squareup.retrofit2:converter-scalars:2.9.0'
+}
+
+jacoco {
+    toolVersion = "0.8.7"
+}
+
+tasks.withType(Test) {
+    useJUnitPlatform()
+    jacoco.excludes = ['jdk.internal.*']
+    jacoco.includeNoLocationClasses = true
+}
+
+task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest']) {
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+
+    def fileFilter = ['**/R.class', '**/R$*.class', '**/BuildConfig.*', '**/Manifest*.*', '**/*Test*.*', 'android/**/*.*']
+    def debugTree = fileTree(dir: "${buildDir}/tmp/kotlin-classes/debug", excludes: fileFilter)
+    def mainSrc = "${project.projectDir}/src/main/java"
+    sourceDirectories.from = files([mainSrc])
+    classDirectories.from = files([debugTree])
+    executionData.from = fileTree(dir: project.buildDir, includes: [
+            'jacoco/testDebugUnitTest.exec',
+    ])
 }

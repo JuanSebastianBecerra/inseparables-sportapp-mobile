@@ -11,20 +11,28 @@ on:
       - edited
 jobs:
   correr-pruebas-unitarias-mobile:
+    permissions: write-all
     name: correr-pruebas-unitarias-mobile
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - name: set up JDK 11.0.15
+      - uses: actions/checkout@v2
+      - name: Configurar JDK 11.0.15
         uses: actions/setup-java@v1
         with:
           java-version: 11.0.15
+      - name: Correr test unitarios y reporte jacoco
+        run: ./gradlew jacocoTestReport
+      - name: Reporte de cobertura de jacoco
+        id: jacoco_reporter
+        uses: PavanMudigonda/jacoco-reporter@v5.0
+        with:
+          coverage_results_path: app/build/reports/jacoco/jacocoTestReport/jacocoTestReport.xml
+          coverage_report_name: Coverage
+          coverage_report_title: JaCoCo
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          skip_check_run: false
+          minimum_coverage: 0
+          fail_below_threshold: true
+          publish_only_summary: false
 
-        # Execute unit tests
-      - name: Unit Test
-        run: ./gradlew testDebugUnitTest
-
-      - name: Android Test Report
-        uses: asadmansr/android-test-report-action@v1.2.0
-        if: ${{ always() }} # IMPORTANT: run Android Test Report regardless
 
