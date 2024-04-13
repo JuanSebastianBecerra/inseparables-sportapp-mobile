@@ -12,7 +12,7 @@ class VolleyBroker constructor(context: Context) {
     val instance: RequestQueue = Volley.newRequestQueue(context.applicationContext)
 
     companion object{
-        const val BASE_URL= "http://192.168.20.54:8080/"
+        const val BASE_URL= "https://personas-jdktocs5yq-ue.a.run.app/"
         fun getRequest(path:String, responseListener: Response.Listener<String>, errorListener: Response.ErrorListener): StringRequest {
             return StringRequest(Request.Method.GET, BASE_URL+path, responseListener,errorListener)
         }
