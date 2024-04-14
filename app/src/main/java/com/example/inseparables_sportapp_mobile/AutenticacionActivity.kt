@@ -39,14 +39,14 @@ class AutenticacionActivity : AppCompatActivity() {
             volleyBroker.instance.add(VolleyBroker.postRequest("personas/ingresar", JSONObject(postParams),
                 { response ->
                     // Display the first 500 characters of the response string.
-                    Toast.makeText(this, response.toString(),
+                    Toast.makeText(this, "Bienvenido",
                         Toast.LENGTH_LONG).show();
                     val intent = Intent(this, InicioActivity::class.java)
                     startActivity(intent)
                 },
                 {
                     Log.d("TAG", it.toString())
-                    Toast.makeText(this, "No funciono",
+                    Toast.makeText(this, "Credenciales incorrectas",
                         Toast.LENGTH_LONG).show();
                 }
             ))
