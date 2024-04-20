@@ -20,8 +20,6 @@ class ServicioAdapter(private val servicios: ArrayList<Servicio>) : RecyclerView
     }
 
     override fun onBindViewHolder(holder: ServicioViewHolder, position: Int) {
-        println(servicios[position].nombre)
-        println(servicios[position].descripcion)
         holder.textNombre.text = servicios[position].nombre
         holder.textDescripcion.text = servicios[position].descripcion
     }

@@ -2,9 +2,6 @@ package com.example.inseparables_sportapp_mobile.entities
 
 import com.google.gson.annotations.SerializedName
 
-
-
-
 class Servicio {
     @SerializedName("id")
     lateinit var id: String
