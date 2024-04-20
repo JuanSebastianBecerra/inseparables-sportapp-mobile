@@ -1,17 +1,19 @@
 package com.example.inseparables_sportapp_mobile
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.android.volley.Response
-import comunes.VolleyBroker
+import com.example.inseparables_sportapp_mobile.comunes.Constants.BASE_URL_PERSONAS
+import com.example.inseparables_sportapp_mobile.comunes.Constants.ROL_KEY
+import com.example.inseparables_sportapp_mobile.comunes.Constants.SHARED_PREFERENCES_KEY
+import com.example.inseparables_sportapp_mobile.comunes.Constants.TOKEN_KEY
+import com.example.inseparables_sportapp_mobile.comunes.VolleyBroker
 import org.json.JSONObject
-
 
 class AutenticacionActivity : AppCompatActivity() {
     lateinit var volleyBroker: VolleyBroker
@@ -36,11 +38,16 @@ class AutenticacionActivity : AppCompatActivity() {
                 "password" to txtContra.text.toString()
             )
 
-            volleyBroker.instance.add(VolleyBroker.postRequest("personas/ingresar", JSONObject(postParams),
+            volleyBroker.instance.add(
+                VolleyBroker.postRequest(
+                "$BASE_URL_PERSONAS/ingresar", JSONObject(postParams),
                 { response ->
                     // Display the first 500 characters of the response string.
                     Toast.makeText(this, "Bienvenido",
                         Toast.LENGTH_LONG).show();
+                    val sharedPreferences = applicationContext.getSharedPreferences(SHARED_PREFERENCES_KEY, Context.MODE_PRIVATE)
+                    sharedPreferences.edit().putString(TOKEN_KEY, response.getString("token")).apply()
+                    sharedPreferences.edit().putString(ROL_KEY, response.getString("rol")).apply()
                     val intent = Intent(this, InicioActivity::class.java)
                     startActivity(intent)
                 },
