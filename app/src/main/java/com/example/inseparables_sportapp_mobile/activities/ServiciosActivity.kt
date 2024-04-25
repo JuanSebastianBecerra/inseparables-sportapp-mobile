@@ -1,44 +1,49 @@
-package com.example.inseparables_sportapp_mobile
+package com.example.inseparables_sportapp_mobile.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.inseparables_sportapp_mobile.R
 import com.example.inseparables_sportapp_mobile.comunes.Constants
+import com.example.inseparables_sportapp_mobile.comunes.Constants.SHARED_PREFERENCES_KEY
+import com.example.inseparables_sportapp_mobile.comunes.Constants.TOKEN_KEY
 import com.example.inseparables_sportapp_mobile.comunes.VolleyBroker
-import com.example.inseparables_sportapp_mobile.entities.Entrenamiento
-import com.example.inseparables_sportapp_mobile.ui.adapters.EntrenamientoAdapter
+import com.example.inseparables_sportapp_mobile.entities.Servicio
+import com.example.inseparables_sportapp_mobile.ui.adapters.ServicioAdapter
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.gson.Gson
 import org.json.JSONObject
+import android.content.Intent
 
-class EntrenamientosActivity : AppCompatActivity() {
 
+class ServiciosActivity : AppCompatActivity() {
     lateinit var volleyBroker: VolleyBroker
     lateinit var token: String;
-    lateinit var entrenamientos: ArrayList<Entrenamiento>;
+    lateinit var servicios: ArrayList<Servicio>;
     lateinit var recyclerView: RecyclerView
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_entrenamientos)
         volleyBroker = VolleyBroker(this.applicationContext)
+        setContentView(R.layout.activity_servicios)
         loadToken()
-        llamarServiciosEntrenamientos()
+        llamarServiciosProductos()
     }
 
     private fun loadToken() {
-        val mPrefs = getSharedPreferences(Constants.SHARED_PREFERENCES_KEY, MODE_PRIVATE)
-        token = mPrefs.getString(Constants.TOKEN_KEY, null).toString()
+        val mPrefs = getSharedPreferences(SHARED_PREFERENCES_KEY, MODE_PRIVATE) //add key
+        token = mPrefs.getString(TOKEN_KEY, null).toString()
     }
 
-    private fun llamarServiciosEntrenamientos() {
+    private fun llamarServiciosProductos() {
         val headersParams: MutableMap<String, String> = HashMap()
         headersParams["Authorization"] = "Bearer $token"
         volleyBroker.instance.add(
             VolleyBroker.getRequest(
-                "${Constants.BASE_URL_DEPORTE}/entrenamientos",
+                "${Constants.BASE_URL_ADMINISTRACION}/producto_servicio",
                 { response ->
                     var jsonRespuestaServicios: JSONObject? = null;
                     try {
@@ -47,10 +52,10 @@ class EntrenamientosActivity : AppCompatActivity() {
                         Log.e("JSON", "Error: \"$e\"");
                     }
                     val gson = Gson()
-                    entrenamientos = ArrayList(
+                    servicios = ArrayList(
                         gson.fromJson(
-                            jsonRespuestaServicios?.getString("entrenamientos"),
-                            Array<Entrenamiento>::class.java
+                            jsonRespuestaServicios?.getString("respuesta"),
+                            Array<Servicio>::class.java
                         ).toList()
                     )
                     createRecycler()
@@ -68,8 +73,9 @@ class EntrenamientosActivity : AppCompatActivity() {
     }
 
     private fun createRecycler(){
-        recyclerView = findViewById(R.id.recycler_entrenamientos)
+        recyclerView = findViewById(R.id.recycler_servicios)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = EntrenamientoAdapter(entrenamientos)
+        recyclerView.adapter = ServicioAdapter(servicios)
     }
+
 }

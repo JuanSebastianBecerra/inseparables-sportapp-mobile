@@ -11,7 +11,7 @@ class EntrenamientoAdapter(private val entrenamientos: ArrayList<Entrenamiento>)
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EntrenamientoViewHolder {
-        return EntrenamientoViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_view_servicio, parent, false))
+        return EntrenamientoViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_view_entrenamiento, parent, false))
     }
 
     override fun getItemCount(): Int {

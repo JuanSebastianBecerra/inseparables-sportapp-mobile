@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.CrearEntrenamientoActivity">
+
+    <EditText
+        android:id="@+id/editTextNombreEntrenamiento"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:height="48dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:hint="@string/nombre"
+        android:layout_marginTop="30dp"
+        android:inputType="text" />
+
+    <Button
+        android:id="@+id/pick_time_hora_inicio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="@string/hora_inicio"
+        android:layout_toEndOf="@id/preview_hora_inicio"
+        android:drawableLeft="@drawable/baseline_access_time_filled_24"
+        android:layout_marginStart="30dp"
+        android:layout_below="@+id/editTextNombreEntrenamiento"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/preview_hora_inicio"
+        style="@style/TextAppearance.MaterialComponents.Headline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_below="@+id/editTextNombreEntrenamiento"
+        android:text="@string/preview_hora_inicio" />
+
+    <Button
+        android:id="@+id/pick_time_hora_fin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="@string/hora_fin"
+        android:layout_toEndOf="@id/preview_hora_inicio"
+        android:layout_below="@id/pick_time_hora_inicio"
+        android:layout_marginStart="30dp"
+        android:drawableLeft="@drawable/baseline_access_time_filled_24" />
+
+    <TextView
+        android:id="@+id/preview_hora_fin"
+        style="@style/TextAppearance.MaterialComponents.Headline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="42dp"
+        android:layout_below="@+id/preview_hora_inicio"
+        android:text="@string/preview_hora_fin"
+        />
+
+    <EditText
+        android:id="@+id/editTextLugar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:height="48dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:hint="@string/lugar"
+        android:layout_marginTop="30dp"
+        android:inputType="text"
+        android:layout_below="@+id/preview_hora_fin"/>
+
+    <Spinner
+        android:id="@+id/spinner_deportes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:height="48dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/editTextLugar"/>
+
+    <EditText
+        android:id="@+id/editTextDetalle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:height="48dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:hint="@string/detalle"
+        android:layout_marginTop="30dp"
+        android:inputType="text|textMultiLine"
+        android:layout_below="@+id/spinner_deportes"/>
+
+    <TextView
+        android:id="@+id/header_radio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:layout_below="@+id/editTextDetalle"
+        android:text="@string/frecuencia"
+        />
+
+    <RadioGroup
+        android:id="@+id/radios_frecuencia"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_below="@+id/header_radio"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+        <RadioButton android:id="@+id/radio_diario"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/diario"/>
+        <RadioButton android:id="@+id/radio_semanal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/semanal"/>
+        <RadioButton android:id="@+id/radio_fines"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fines_de_semana"/>
+    </RadioGroup>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true">
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/cancelar_button_entrenamiento"
+        style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
+        app:cornerRadius="28dp"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:backgroundTint="@color/BlueGreen_2"
+        android:drawableBottom="@drawable/baseline_close_24" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/guardar_button_entrenamiento"
+        style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
+        app:cornerRadius="28dp"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:backgroundTint="@color/BlueGreen_7"
+        android:layout_alignParentBottom="true"
+        android:drawableBottom="@drawable/baseline_check_24"
+        android:layout_toEndOf="@id/cancelar_button_entrenamiento" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+</RelativeLayout>
