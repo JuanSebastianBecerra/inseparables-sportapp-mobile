@@ -1,4 +1,4 @@
-package com.example.inseparables_sportapp_mobile
+package com.example.inseparables_sportapp_mobile.activities
 
 import android.content.Context
 import android.content.Intent
@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.inseparables_sportapp_mobile.R
 import com.example.inseparables_sportapp_mobile.comunes.Constants.BASE_URL_PERSONAS
 import com.example.inseparables_sportapp_mobile.comunes.Constants.ROL_KEY
 import com.example.inseparables_sportapp_mobile.comunes.Constants.SHARED_PREFERENCES_KEY

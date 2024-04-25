@@ -1,19 +1,23 @@
-package com.example.inseparables_sportapp_mobile
+package com.example.inseparables_sportapp_mobile.activities
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.inseparables_sportapp_mobile.R
 import com.example.inseparables_sportapp_mobile.comunes.Constants
 import com.example.inseparables_sportapp_mobile.comunes.Constants.SHARED_PREFERENCES_KEY
 import com.example.inseparables_sportapp_mobile.comunes.Constants.TOKEN_KEY
 import com.example.inseparables_sportapp_mobile.comunes.VolleyBroker
 import com.example.inseparables_sportapp_mobile.entities.Servicio
 import com.example.inseparables_sportapp_mobile.ui.adapters.ServicioAdapter
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.gson.Gson
 import org.json.JSONObject
+import android.content.Intent
 
 
 class ServiciosActivity : AppCompatActivity() {
@@ -27,6 +31,7 @@ class ServiciosActivity : AppCompatActivity() {
         setContentView(R.layout.activity_servicios)
         loadToken()
         llamarServiciosProductos()
+        activarBotonFlotante()
     }
 
     private fun loadToken() {
@@ -72,5 +77,11 @@ class ServiciosActivity : AppCompatActivity() {
         recyclerView = findViewById(R.id.recycler_servicios)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = ServicioAdapter(servicios)
+    }
+
+    private fun activarBotonFlotante(){
+        val intentCrearServicio = Intent(this, CrearEntrenamientoActivity::class.java)
+        val fab = findViewById<View>(R.id.agregar_entrenamiento) as FloatingActionButton
+        fab.setOnClickListener { startActivity(intentCrearServicio) }
     }
 }

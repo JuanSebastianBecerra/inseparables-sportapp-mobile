@@ -10,4 +10,20 @@
     <string name="servicios">Servicios</string>
     <string name="nombre">Nombre</string>
     <string name="descripcion">Descripcion</string>
+    <string name="agregar">Agregar</string>
+    <string name="hora_inicio">Hora incio</string>
+    <string name="preview_hora_inicio">Hora incio …</string>
+    <string name="hora_fin">Hora fin</string>
+    <string name="preview_hora_fin">Hora fin …</string>
+    <string name="lugar">Lugar</string>
+    <string name="detalle">Detalle</string>
+    <string name="diario">Diario</string>
+    <string name="semanal">Semanal</string>
+    <string name="fines_de_semana">Fines de semana</string>
+    <string name="frecuencia">Frecuencia</string>
+    <string-array name="deportes_lista">
+        <item>Ciclismo</item>
+        <item>Atletismo</item>
+    </string-array>
+
 </resources>

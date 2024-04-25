@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ServiciosActivity">
+    tools:context=".activities.ServiciosActivity">
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -18,5 +18,31 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/ly_bar_bottom"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="right"
+        android:orientation="horizontal"
+        tools:ignore="RtlHardcoded">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/agregar_entrenamiento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:src="@drawable/baseline_add_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:backgroundTint="@color/BlueGreen_10"
+            app:tint="@color/white"
+            android:minWidth="40dp"
+            android:contentDescription="@string/agregar"
+            android:layout_margin="16dp" />
+    </LinearLayout>
+
+
+
 
 </RelativeLayout>

@@ -1,4 +1,4 @@
-package com.example.inseparables_sportapp_mobile
+package com.example.inseparables_sportapp_mobile.activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
+import com.example.inseparables_sportapp_mobile.R
 import com.google.android.material.navigation.NavigationView
 
 
