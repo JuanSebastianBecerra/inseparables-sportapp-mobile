@@ -15,7 +15,7 @@ import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
 import org.json.JSONObject
 
-class CrearEntrenamientoActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
+class CrearEntrenamientoActivity : AppCompatActivity(){
 
     lateinit var volleyBroker: VolleyBroker
 
@@ -63,12 +63,6 @@ class CrearEntrenamientoActivity : AppCompatActivity(), AdapterView.OnItemSelect
          textoDetalle = findViewById(R.id.editTextDetalle);
          botonCancelar = findViewById(R.id.cancelar_button_entrenamiento);
          botonGuardar = findViewById(R.id.guardar_button_entrenamiento);
-    }
-
-    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-    }
-
-    override fun onNothingSelected(p0: AdapterView<*>?) {
     }
 
     private fun crearTimePickerHoraInicio() {
@@ -175,7 +169,6 @@ class CrearEntrenamientoActivity : AppCompatActivity(), AdapterView.OnItemSelect
             spinnerDeportes.adapter = adapter
         }
         spinnerDeportes.prompt = "Deporte ";
-        spinnerDeportes.onItemSelectedListener = this
 
     }
 
@@ -203,8 +196,14 @@ class CrearEntrenamientoActivity : AppCompatActivity(), AdapterView.OnItemSelect
     private fun listenerGuardarEntrenamineto(){
         botonGuardar.setOnClickListener {
             val postParams = mapOf<String, Any>(
-                "email" to txtUsuario.text.toString(),
-                "password" to txtContra.text.toString()
+                "nombre" to textoNombre.text.toString(),
+                "hora_inicio" to textPickerInicio.text.toString(),
+                "hora_fin" to textPickerFin.text.toString(),
+                "lugar" to textoLugar.text.toString(),
+                "frecuencia" to frecuenciaSeleccionada,
+                "detalle" to textoDetalle.text.toString(),
+                "deporte" to spinnerDeportes.selectedItem.toString()
+
             )
 
             volleyBroker.instance.add(
