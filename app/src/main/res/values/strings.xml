@@ -10,4 +10,6 @@
     <string name="servicios">Servicios</string>
     <string name="nombre">Nombre</string>
     <string name="descripcion">Descripcion</string>
+    <string name="lugar">Lugar</string>
+    <string name="entrenamientos">Entrenamientos</string>
 </resources>

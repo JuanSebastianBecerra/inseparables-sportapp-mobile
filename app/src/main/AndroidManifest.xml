@@ -15,6 +15,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".EntrenamientosActivity"
+            android:exported="false" />
+        <activity
             android:name=".ServiciosActivity"
             android:exported="false" />
         <activity
