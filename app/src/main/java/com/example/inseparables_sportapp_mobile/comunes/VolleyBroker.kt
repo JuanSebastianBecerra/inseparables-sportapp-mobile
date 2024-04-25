@@ -32,6 +32,18 @@ class VolleyBroker constructor(context: Context) {
             return  JsonObjectRequest(Request.Method.POST, path, body, responseListener, errorListener)
         }
 
+        fun postRequestWithHeaders(path: String, body: JSONObject,  responseListener: Response.Listener<JSONObject>, errorListener: Response.ErrorListener, headersMap: HashMap<String, String> ):JsonObjectRequest{
+            val jsonObjReq: JsonObjectRequest = object : JsonObjectRequest(
+                Method.POST, path, body, responseListener, errorListener) {
+                /** Passing some request headers*  */
+                @Throws(AuthFailureError::class)
+                override fun getHeaders(): Map<String, String> {
+                    return headersMap
+                }
+            }
+            return  jsonObjReq
+        }
+
     }
 
 }

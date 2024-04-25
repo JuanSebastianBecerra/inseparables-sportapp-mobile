@@ -18,6 +18,7 @@ import org.json.JSONObject
 class CrearEntrenamientoActivity : AppCompatActivity(){
 
     lateinit var volleyBroker: VolleyBroker
+    lateinit var token: String;
 
     private lateinit var pickTimeFin: Button
     private lateinit var textPickerFin: TextView
@@ -40,6 +41,7 @@ class CrearEntrenamientoActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_crear_entrenamiento)
         volleyBroker = VolleyBroker(this.applicationContext)
+        loadToken()
         iniciarComponentes()
         crearTimePickerHoraInicio()
         crearTimePickerHoraFin()
@@ -47,6 +49,11 @@ class CrearEntrenamientoActivity : AppCompatActivity(){
         iniciarRadios()
         listenerCancelarEntrenamiento()
         listenerGuardarEntrenamineto()
+    }
+
+    private fun loadToken() {
+        val mPrefs = getSharedPreferences(Constants.SHARED_PREFERENCES_KEY, MODE_PRIVATE)
+        token = mPrefs.getString(Constants.TOKEN_KEY, null).toString()
     }
 
     private fun iniciarComponentes(){
@@ -195,6 +202,8 @@ class CrearEntrenamientoActivity : AppCompatActivity(){
 
     private fun listenerGuardarEntrenamineto(){
         botonGuardar.setOnClickListener {
+            val headersParams: MutableMap<String, String> = HashMap()
+            headersParams["Authorization"] = "Bearer $token"
             val postParams = mapOf<String, Any>(
                 "nombre" to textoNombre.text.toString(),
                 "hora_inicio" to textPickerInicio.text.toString(),
@@ -207,23 +216,22 @@ class CrearEntrenamientoActivity : AppCompatActivity(){
             )
 
             volleyBroker.instance.add(
-                VolleyBroker.postRequest(
-                    "${Constants.BASE_URL_PERSONAS}/ingresar", JSONObject(postParams),
-                    { response ->
+                VolleyBroker.postRequestWithHeaders(
+                    "${Constants.BASE_URL_DEPORTE}/entrenamiento",
+                    JSONObject(postParams),
+                    {
                         // Display the first 500 characters of the response string.
-                        Toast.makeText(this, "Bienvenido",
+                        Toast.makeText(this, "Entrenamiento registrado",
                             Toast.LENGTH_LONG).show();
-                        val sharedPreferences = applicationContext.getSharedPreferences(Constants.SHARED_PREFERENCES_KEY, Context.MODE_PRIVATE)
-                        sharedPreferences.edit().putString(Constants.TOKEN_KEY, response.getString("token")).apply()
-                        sharedPreferences.edit().putString(Constants.ROL_KEY, response.getString("rol")).apply()
-                        val intent = Intent(this, InicioActivity::class.java)
+                        this.finish()
                         startActivity(intent)
                     },
                     {
                         Log.d("TAG", it.toString())
-                        Toast.makeText(this, "Credenciales incorrectas",
+                        Toast.makeText(this, "Error al registrar el entrenamiento",
                             Toast.LENGTH_LONG).show();
-                    }
+                    },
+                    headersParams as HashMap<String, String>
                 ))
         }
 

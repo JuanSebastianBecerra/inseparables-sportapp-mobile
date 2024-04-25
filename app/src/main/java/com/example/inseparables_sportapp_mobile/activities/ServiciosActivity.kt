@@ -31,7 +31,6 @@ class ServiciosActivity : AppCompatActivity() {
         setContentView(R.layout.activity_servicios)
         loadToken()
         llamarServiciosProductos()
-        activarBotonFlotante()
     }
 
     private fun loadToken() {
@@ -79,9 +78,4 @@ class ServiciosActivity : AppCompatActivity() {
         recyclerView.adapter = ServicioAdapter(servicios)
     }
 
-    private fun activarBotonFlotante(){
-        val intentCrearServicio = Intent(this, CrearEntrenamientoActivity::class.java)
-        val fab = findViewById<View>(R.id.agregar_entrenamiento) as FloatingActionButton
-        fab.setOnClickListener { startActivity(intentCrearServicio) }
-    }
 }

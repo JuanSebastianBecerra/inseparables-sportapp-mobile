@@ -1,15 +1,19 @@
-package com.example.inseparables_sportapp_mobile
+package com.example.inseparables_sportapp_mobile.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.inseparables_sportapp_mobile.R
 import com.example.inseparables_sportapp_mobile.comunes.Constants
 import com.example.inseparables_sportapp_mobile.comunes.VolleyBroker
 import com.example.inseparables_sportapp_mobile.entities.Entrenamiento
 import com.example.inseparables_sportapp_mobile.ui.adapters.EntrenamientoAdapter
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.gson.Gson
 import org.json.JSONObject
 
@@ -26,6 +30,7 @@ class EntrenamientosActivity : AppCompatActivity() {
         volleyBroker = VolleyBroker(this.applicationContext)
         loadToken()
         llamarServiciosEntrenamientos()
+        activarBotonFlotante()
     }
 
     private fun loadToken() {
@@ -71,5 +76,11 @@ class EntrenamientosActivity : AppCompatActivity() {
         recyclerView = findViewById(R.id.recycler_entrenamientos)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = EntrenamientoAdapter(entrenamientos)
+    }
+
+    private fun activarBotonFlotante(){
+        val intentCrearServicio = Intent(this, CrearEntrenamientoActivity::class.java)
+        val fab = findViewById<View>(R.id.agregar_entrenamiento) as FloatingActionButton
+        fab.setOnClickListener { startActivity(intentCrearServicio) }
     }
 }
