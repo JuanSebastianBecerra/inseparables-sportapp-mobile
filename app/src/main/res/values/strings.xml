@@ -25,5 +25,5 @@
         <item>Ciclismo</item>
         <item>Atletismo</item>
     </string-array>
-
+    <string name="entrenamientos">Entrenamientos</string>
 </resources>
