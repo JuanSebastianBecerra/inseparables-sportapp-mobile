@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.View
 import android.widget.*
@@ -223,8 +224,9 @@ class CrearEntrenamientoActivity : AppCompatActivity(){
                         // Display the first 500 characters of the response string.
                         Toast.makeText(this, "Entrenamiento registrado",
                             Toast.LENGTH_LONG).show();
-                        this.finish()
-                        startActivity(intent)
+                        Handler().postDelayed({
+                            this.finish()
+                        }, 3000)
                     },
                     {
                         Log.d("TAG", it.toString())

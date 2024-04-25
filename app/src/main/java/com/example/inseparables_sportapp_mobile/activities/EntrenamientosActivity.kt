@@ -1,11 +1,11 @@
 package com.example.inseparables_sportapp_mobile.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.inseparables_sportapp_mobile.R
@@ -82,5 +82,10 @@ class EntrenamientosActivity : AppCompatActivity() {
         val intentCrearServicio = Intent(this, CrearEntrenamientoActivity::class.java)
         val fab = findViewById<View>(R.id.agregar_entrenamiento) as FloatingActionButton
         fab.setOnClickListener { startActivity(intentCrearServicio) }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        llamarServiciosEntrenamientos()
     }
 }
