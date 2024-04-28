@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.View
 import android.widget.*
@@ -221,10 +222,9 @@ class CrearEntrenamientoActivity : AppCompatActivity(){
                     "${Constants.BASE_URL_DEPORTE}/entrenamiento",
                     JSONObject(postParams),
                     {
-                        // Display the first 500 characters of the response string.
                         Toast.makeText(this, "Entrenamiento registrado",
                             Toast.LENGTH_LONG).show();
-                        Handler().postDelayed({
+                        Handler(Looper.getMainLooper()).postDelayed({
                             this.finish()
                         }, 3000)
                     },

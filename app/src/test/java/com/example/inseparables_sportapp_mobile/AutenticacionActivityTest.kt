@@ -1,6 +1,7 @@
 package com.example.inseparables_sportapp_mobile
 
 import android.os.Handler
+import android.os.Looper
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.action.ViewActions.replaceText
@@ -50,12 +51,11 @@ class AutenticacionActivityTest {
         onView(withId(R.id.editTextContrasenia)).perform(replaceText(""))
         onView(withId(R.id.buttonIngresar)).perform(click())
         activityAutenticationScenarioTestRule.scenario.onActivity { activity ->
-            Handler().postDelayed({
+            Handler(Looper.getMainLooper()).postDelayed({
                 onView(withText("Credenciales incorrectas")).inRoot(
                     withDecorView(
                         not(
                             activity.window.decorView
-
                         )
                     )
                 ).check(
@@ -63,8 +63,7 @@ class AutenticacionActivityTest {
                         isDisplayed()
                     )
                 )
-            }, 3000)
-
+            }, 5000)
         }
     }
 

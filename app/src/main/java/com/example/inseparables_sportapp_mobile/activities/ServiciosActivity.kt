@@ -72,7 +72,7 @@ class ServiciosActivity : AppCompatActivity() {
         )
     }
 
-    private fun createRecycler(){
+    fun createRecycler(){
         recyclerView = findViewById(R.id.recycler_servicios)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = ServicioAdapter(servicios)
