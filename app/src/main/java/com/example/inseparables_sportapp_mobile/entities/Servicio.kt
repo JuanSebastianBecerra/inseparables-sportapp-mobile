@@ -2,25 +2,15 @@ package com.example.inseparables_sportapp_mobile.entities
 
 import com.google.gson.annotations.SerializedName
 
-class Servicio {
+class Servicio(
     @SerializedName("id")
-    lateinit var id: String
+    var id: String, @SerializedName("nombre")
+    var nombre: String, @SerializedName("valor")
+    var valor: String, @SerializedName("detalle")
+    var detalle: String, @SerializedName("descripcion")
+    var descripcion: String, @SerializedName("id_deporte")
+    var idDeporte: String, @SerializedName("id_socio")
+    var idSocio: String
+) {
 
-    @SerializedName("nombre")
-    lateinit var nombre: String
-
-    @SerializedName("valor")
-    lateinit var valor: String
-
-    @SerializedName("detalle")
-    lateinit var detalle: String
-
-    @SerializedName("descripcion")
-    lateinit var descripcion: String
-
-    @SerializedName("id_deporte")
-    lateinit var idDeporte: String
-
-    @SerializedName("id_socio")
-    lateinit var idSocio: String
 }

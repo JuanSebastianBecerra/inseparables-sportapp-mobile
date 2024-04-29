@@ -72,7 +72,7 @@ class EntrenamientosActivity : AppCompatActivity() {
         )
     }
 
-    private fun createRecycler(){
+    fun createRecycler(){
         recyclerView = findViewById(R.id.recycler_entrenamientos)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = EntrenamientoAdapter(entrenamientos)
