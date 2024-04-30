@@ -1,0 +1,37 @@
+name: Generar y subir APK
+
+env:
+  main_project_module: app
+  PROJECT_ID: sportapp-grupo2
+
+on:
+  push:
+    branches:
+      - 'develop'
+
+jobs:
+  construir-subir-apk:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configurar Java JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: '11'
+          distribution: 'zulu'
+      - name: Construir el proyecto
+        run: ./gradlew build
+      - name: Construir el APK Debug
+        run: ./gradlew assembleDebug
+      - name: Autenticación de Google
+        id: auth
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: '${{ secrets.GCP_SA_STORAGE_KEY }}'
+      - name: Configurar Cloud SDK
+        uses: 'google-github-actions/setup-gcloud@v2'
+        with:
+          project_id: ${{env.PROJECT_ID}}
+      - name: Hacer push del APK al bucket de Cloud Storage
+        run: |-
+          gcloud storage cp ${{ env.main_project_module }}/build/outputs/apk/debug/app-debug.apk gs://apk-sportapp

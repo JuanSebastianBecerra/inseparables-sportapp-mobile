@@ -1,5 +1,6 @@
-package com.example.inseparables_sportapp_mobile
+package com.example.inseparables_sportapp_mobile.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
@@ -7,6 +8,7 @@ import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
+import com.example.inseparables_sportapp_mobile.R
 import com.google.android.material.navigation.NavigationView
 
 
@@ -27,11 +29,14 @@ class InicioActivity : AppCompatActivity() {
         drawerLayoutCollector.addDrawerListener(toggle)
         toggle.syncState()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        //val intentPerformer = Intent(this, PerformerActivity::class.java)
+        val intentServicios = Intent(this, ServiciosActivity::class.java)
+        val intentEntrenamientos = Intent(this, EntrenamientosActivity::class.java)
         //intentPerformer.putExtra("favorites", false)
         navViewCollector.setNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.inicio -> Toast.makeText(this, "test click", Toast.LENGTH_SHORT).show()
+                R.id.servicios -> startActivity(intentServicios)
+                R.id.entrenamientos -> startActivity(intentEntrenamientos)
                 R.id.cerrar_sesion -> this.finish()
                 //R.id.inicio -> startActivity(intentPerformer)
             }
