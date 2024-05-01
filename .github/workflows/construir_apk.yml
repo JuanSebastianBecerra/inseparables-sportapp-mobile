@@ -2,7 +2,7 @@ name: Generar y subir APK
 
 env:
   main_project_module: app
-  PROJECT_ID: sportapp-grupo2
+  PROJECT_ID: sportapp-proyecto2
 
 on:
   push:
@@ -27,11 +27,11 @@ jobs:
         id: auth
         uses: google-github-actions/auth@v2
         with:
-          credentials_json: '${{ secrets.GCP_SA_STORAGE_KEY }}'
+          credentials_json: '${{ secrets.GCP_KEY }}'
       - name: Configurar Cloud SDK
         uses: 'google-github-actions/setup-gcloud@v2'
         with:
           project_id: ${{env.PROJECT_ID}}
       - name: Hacer push del APK al bucket de Cloud Storage
         run: |-
-          gcloud storage cp ${{ env.main_project_module }}/build/outputs/apk/debug/app-debug.apk gs://apk-sportapp
+          gcloud storage cp ${{ env.main_project_module }}/build/outputs/apk/debug/app-debug.apk gs://apk-sportapp-grupo2
