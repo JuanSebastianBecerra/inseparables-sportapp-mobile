@@ -183,15 +183,15 @@ class CrearEntrenamientoActivity : AppCompatActivity(){
 
     private fun iniciarRadios(){
         radioDiario.isChecked = true;
-        radioDiario.setOnCheckedChangeListener { buttonView, isChecked ->
+        radioDiario.setOnCheckedChangeListener { _, _ ->
             frecuenciaSeleccionada = "DIARIO"
         }
 
-        radioSemanal.setOnCheckedChangeListener { buttonView, isChecked ->
+        radioSemanal.setOnCheckedChangeListener { _, _ ->
             frecuenciaSeleccionada = "SEMANAL"
         }
 
-        radioFines.setOnCheckedChangeListener { buttonView, isChecked ->
+        radioFines.setOnCheckedChangeListener { _, _ ->
             frecuenciaSeleccionada = "FINES_SEMANA"
         }
     }
