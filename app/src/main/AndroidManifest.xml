@@ -15,6 +15,12 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".activities.DetalleEventoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.EventosActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.DetalleServicioActivity"
             android:exported="false" />
         <activity
