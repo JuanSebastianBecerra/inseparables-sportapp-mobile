@@ -7,11 +7,15 @@
     <item
         android:id="@+id/servicios"
         android:title="@string/servicios"
-        android:icon="@drawable/baseline_sports_martial_arts_24" />
+        android:icon="@drawable/baseline_home_repair_service_24" />
     <item
         android:id="@+id/entrenamientos"
         android:title="@string/entrenamientos"
         android:icon="@drawable/baseline_home_24" />
+    <item
+        android:id="@+id/eventos"
+        android:title="@string/eventos"
+        android:icon="@drawable/baseline_sports_martial_arts_24" />
     <item
         android:id="@+id/cerrar_sesion"
         android:title="@string/cerrar_sesion"

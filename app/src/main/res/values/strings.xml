@@ -26,4 +26,5 @@
         <item>Atletismo</item>
     </string-array>
     <string name="entrenamientos">Entrenamientos</string>
+    <string name="eventos">Eventos</string>
 </resources>

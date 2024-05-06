@@ -31,14 +31,14 @@ class InicioActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         val intentServicios = Intent(this, ServiciosActivity::class.java)
         val intentEntrenamientos = Intent(this, EntrenamientosActivity::class.java)
-        //intentPerformer.putExtra("favorites", false)
+        val intentEventos = Intent(this, EventosActivity::class.java)
         navViewCollector.setNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.inicio -> Toast.makeText(this, "test click", Toast.LENGTH_SHORT).show()
                 R.id.servicios -> startActivity(intentServicios)
                 R.id.entrenamientos -> startActivity(intentEntrenamientos)
+                R.id.eventos -> startActivity(intentEventos)
                 R.id.cerrar_sesion -> this.finish()
-                //R.id.inicio -> startActivity(intentPerformer)
             }
             true
         }
