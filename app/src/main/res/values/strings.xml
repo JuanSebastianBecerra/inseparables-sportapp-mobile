@@ -27,4 +27,7 @@
     </string-array>
     <string name="entrenamientos">Entrenamientos</string>
     <string name="eventos">Eventos</string>
+    <string name="organizador">Organizador</string>
+    <string name="puedes_necesitar">Puedes necesitar:</string>
+    <string name="agendar">Agendar</string>
 </resources>
