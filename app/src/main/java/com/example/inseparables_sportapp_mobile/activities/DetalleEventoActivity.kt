@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.ArrayAdapter
+import android.widget.ListView
 import android.widget.TextView
 import android.widget.Toast
 import com.example.inseparables_sportapp_mobile.R
@@ -11,6 +13,7 @@ import com.example.inseparables_sportapp_mobile.comunes.Constants
 import com.example.inseparables_sportapp_mobile.comunes.VolleyBroker
 import com.example.inseparables_sportapp_mobile.entities.Evento
 import com.example.inseparables_sportapp_mobile.entities.Servicio
+import com.example.inseparables_sportapp_mobile.entities.Socio
 import com.google.gson.Gson
 import org.json.JSONObject
 
@@ -20,12 +23,14 @@ class DetalleEventoActivity : AppCompatActivity() {
     lateinit var volleyBroker: VolleyBroker
     lateinit var token: String
     lateinit var evento: Evento
+    lateinit var socio: Socio
     lateinit var servicios: ArrayList<Servicio>
     lateinit var textTitulo: TextView
     lateinit var textHoraInicio: TextView
     lateinit var textHoraFin: TextView
     lateinit var textOrganizador: TextView
     lateinit var textDescripcion: TextView
+    lateinit var listServiciosEvento: ListView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,6 +62,35 @@ class DetalleEventoActivity : AppCompatActivity() {
                         Log.e("JSON", "Error: \"$e\"");
                     }
                     evento = gson.fromJson(jsonRespuestaServicios?.getString("respuesta"), Evento::class.java)
+                    llamarServicioOrganizador()
+                },
+                {
+                    Log.d("TAG", it.toString())
+                    Toast.makeText(
+                        this, "Error en la consulta",
+                        Toast.LENGTH_LONG
+                    ).show();
+                },
+                headersParams as HashMap<String, String>
+            )
+        )
+    }
+
+    private fun llamarServicioOrganizador() {
+        val headersParams: MutableMap<String, String> = HashMap()
+        headersParams["Authorization"] = "Bearer $token"
+        volleyBroker.instance.add(
+            VolleyBroker.getRequest(
+                "${Constants.BASE_URL_ADMINISTRACION}/socios/${evento.id_socio}",
+                { response ->
+                    var jsonRespuestaServicios: JSONObject? = null;
+                    try {
+                        jsonRespuestaServicios = JSONObject(response)
+                    } catch (e: Exception) {
+                        Log.e("JSON", "Error: \"$e\"");
+                    }
+                    val gson = Gson()
+                    socio = gson.fromJson(jsonRespuestaServicios?.getString("respuesta"), Socio::class.java)
                     cargarInformacionEvento()
                 },
                 {
@@ -111,11 +145,18 @@ class DetalleEventoActivity : AppCompatActivity() {
         textHoraFin = findViewById(R.id.textFinValor)
         textOrganizador = findViewById(R.id.textOrganizadorValor)
         textDescripcion = findViewById(R.id.textDetalleEvento)
+        listServiciosEvento = findViewById(R.id.lista_servicios_evento)
         textTitulo.text = evento.nombre
         textHoraInicio.text = evento.fecha_inicio
         textHoraFin.text = evento.fecha_fin
         textDescripcion.text = evento.detalle
-        textOrganizador.text = evento.id_socio
+        textOrganizador.text = socio.nombre + " " + socio.apellido
+        crearAdapterServiciosEvento()
 
+    }
+
+    fun crearAdapterServiciosEvento(){
+        val serviciosAdapter = ArrayAdapter(applicationContext,android.R.layout.simple_list_item_1,servicios.map { it.nombre })
+        listServiciosEvento.adapter = serviciosAdapter
     }
 }

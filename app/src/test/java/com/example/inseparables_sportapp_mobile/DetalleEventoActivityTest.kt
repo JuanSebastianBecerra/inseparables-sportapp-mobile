@@ -7,6 +7,7 @@ import com.example.inseparables_sportapp_mobile.activities.DetalleServicioActivi
 import com.example.inseparables_sportapp_mobile.activities.ServiciosActivity
 import com.example.inseparables_sportapp_mobile.entities.Evento
 import com.example.inseparables_sportapp_mobile.entities.Servicio
+import com.example.inseparables_sportapp_mobile.entities.Socio
 import com.example.inseparables_sportapp_mobile.entities.Ubicacion
 import org.junit.Assert
 import org.junit.Test
@@ -26,12 +27,15 @@ class DetalleEventoActivityTest {
     }
 
     @Test
-    fun crearRecyckerServicios() {
+    fun crearRecyclerServicios() {
         val activityScenario = ActivityScenario.launch(DetalleEventoActivity::class.java)
         activityScenario.onActivity { activity ->
             Assert.assertNotNull(activity)
             val ubicacion = Ubicacion("", "", "", "", "", "", "")
             activity.evento = Evento("", "", "", "", "", "", "", ubicacion)
+            activity.socio = Socio("", "", "", "", "", "", "", "")
+            activity.servicios = ArrayList()
+            activity.servicios.add(Servicio("","","","","","",""))
             activity.cargarInformacionEvento()
         }
     }
