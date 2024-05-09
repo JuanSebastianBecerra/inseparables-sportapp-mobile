@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.SesionActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textChronometer"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/black"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:hint="@string/default_chronometer"
+        android:gravity="center_horizontal"
+        android:textSize="25sp"/>
+
+    <Chronometer
+        android:id="@+id/cronometro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_margin="20dp"
+        android:gravity="center"
+        android:padding="10dp"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:layout_below="@+id/textChronometer"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/linearBotones"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cronometro"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp">
+
+        <Button
+            android:id="@+id/botonIniciar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginEnd="45dp"
+            android:layout_below="@+id/editRitmoMaximo"
+            android:text="@string/iniciar" />
+
+        <Button
+            android:id="@+id/botonPausa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+
+            android:layout_marginEnd="45dp"
+            android:layout_below="@+id/editRitmoMaximo"
+            android:layout_toEndOf="@+id/botonIniciar"
+            android:text="@string/pausar" />
+
+        <Button
+            android:id="@+id/botonReiniciar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+
+            android:layout_below="@+id/editRitmoMaximo"
+            android:layout_toEndOf="@+id/botonPausa"
+            android:text="@string/reiniciar" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editPotencia"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/black"
+        android:layout_marginStart="15dp"
+        android:layout_below="@+id/linearBotones"
+        android:layout_marginEnd="15dp"
+        android:hint="@string/potencia"
+        android:textAlignment="textStart"
+        android:textSize="25sp"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editRitmoMinimo"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/black"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:hint="@string/ritmo_minimo"
+        android:layout_below="@+id/editPotencia"
+        android:textAlignment="textStart"
+        android:textSize="25sp"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editRitmoMaximo"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/black"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_below="@+id/editRitmoMinimo"
+        android:hint="@string/ritmo_maximo"
+        android:textAlignment="textStart"
+        android:textSize="25sp"/>
+
+    <Button
+        android:id="@+id/botonGuardarSesion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="45dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginEnd="45dp"
+        android:layout_below="@+id/editRitmoMaximo"
+        android:text="@string/guardar" />
+
+</RelativeLayout>

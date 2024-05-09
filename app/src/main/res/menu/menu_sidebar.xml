@@ -17,6 +17,10 @@
         android:title="@string/eventos"
         android:icon="@drawable/baseline_sports_martial_arts_24" />
     <item
+        android:id="@+id/sesion"
+        android:title="@string/sesion"
+        android:icon="@drawable/baseline_sports_gymnastics_24" />
+    <item
         android:id="@+id/cerrar_sesion"
         android:title="@string/cerrar_sesion"
         android:icon="@drawable/baseline_logout_24" />
