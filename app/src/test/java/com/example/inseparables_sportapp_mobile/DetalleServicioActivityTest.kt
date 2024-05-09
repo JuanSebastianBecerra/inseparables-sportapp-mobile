@@ -23,7 +23,7 @@ class DetalleServicioActivityTest {
     }
 
     @Test
-    fun crearRecyckerServicios() {
+    fun crearRecyclerServicios() {
         val activityScenario = ActivityScenario.launch(DetalleServicioActivity::class.java)
         activityScenario.onActivity { activity ->
             Assert.assertNotNull(activity)
