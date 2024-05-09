@@ -32,44 +32,6 @@
         android:textSize="20sp"
         android:textStyle="bold" />
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/linearBotones"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/cronometro"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp">
-
-        <Button
-            android:id="@+id/botonIniciar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginEnd="45dp"
-            android:layout_below="@+id/editRitmoMaximo"
-            android:text="@string/iniciar" />
-
-        <Button
-            android:id="@+id/botonPausa"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-
-            android:layout_marginEnd="45dp"
-            android:layout_below="@+id/editRitmoMaximo"
-            android:layout_toEndOf="@+id/botonIniciar"
-            android:text="@string/pausar" />
-
-        <Button
-            android:id="@+id/botonReiniciar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-
-            android:layout_below="@+id/editRitmoMaximo"
-            android:layout_toEndOf="@+id/botonPausa"
-            android:text="@string/reiniciar" />
-    </androidx.appcompat.widget.LinearLayoutCompat>
 
     <EditText
         android:layout_width="match_parent"
@@ -78,7 +40,7 @@
         android:layout_marginTop="30dp"
         android:textColor="@color/black"
         android:layout_marginStart="15dp"
-        android:layout_below="@+id/linearBotones"
+        android:layout_below="@+id/cronometro"
         android:layout_marginEnd="15dp"
         android:hint="@string/potencia"
         android:textAlignment="textStart"
@@ -111,7 +73,7 @@
         android:textSize="25sp"/>
 
     <Button
-        android:id="@+id/botonGuardarSesion"
+        android:id="@+id/botonIniciarTerminar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -119,6 +81,6 @@
         android:layout_marginStart="45dp"
         android:layout_marginEnd="45dp"
         android:layout_below="@+id/editRitmoMaximo"
-        android:text="@string/guardar" />
+        android:text="@string/iniciar" />
 
 </RelativeLayout>
