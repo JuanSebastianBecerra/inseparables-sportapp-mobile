@@ -32,12 +32,14 @@ class InicioActivity : AppCompatActivity() {
         val intentServicios = Intent(this, ServiciosActivity::class.java)
         val intentEntrenamientos = Intent(this, EntrenamientosActivity::class.java)
         val intentEventos = Intent(this, EventosActivity::class.java)
+        val intentSesion = Intent(this, SesionActivity::class.java)
         navViewCollector.setNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.inicio -> Toast.makeText(this, "test click", Toast.LENGTH_SHORT).show()
                 R.id.servicios -> startActivity(intentServicios)
                 R.id.entrenamientos -> startActivity(intentEntrenamientos)
                 R.id.eventos -> startActivity(intentEventos)
+                R.id.sesion -> startActivity(intentSesion)
                 R.id.cerrar_sesion -> this.finish()
             }
             true
