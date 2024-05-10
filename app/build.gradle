@@ -71,6 +71,7 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
     implementation 'com.squareup.retrofit2:converter-scalars:2.9.0'
     implementation "androidx.recyclerview:recyclerview:ultima-version"
+    implementation 'com.github.prolificinteractive:material-calendarview:1.4.2'
     testImplementation 'androidx.test.espresso:espresso-core:3.5.1'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     testImplementation "androidx.test.espresso:espresso-contrib:3.5.1"
