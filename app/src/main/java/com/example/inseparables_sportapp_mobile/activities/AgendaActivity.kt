@@ -21,12 +21,11 @@ class AgendaActivity : AppCompatActivity() {
     lateinit var volleyBroker: VolleyBroker
     lateinit var token: String;
     lateinit var eventos: ArrayList<Evento>
-    lateinit var dateTV: TextView
     lateinit var calendarView: MaterialCalendarView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_calendar)
+        setContentView(R.layout.activity_agenda)
         volleyBroker = VolleyBroker(this.applicationContext)
         loadToken()
         llamarServiciosEventos()
@@ -39,7 +38,6 @@ class AgendaActivity : AppCompatActivity() {
     }
 
     fun inicarCalendario(){
-        dateTV = findViewById(R.id.textFecha)
         calendarView = findViewById(R.id.calendarView)
     }
 
