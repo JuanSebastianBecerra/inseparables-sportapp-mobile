@@ -40,4 +40,7 @@
     <string name="guardar">Guardar</string>
     <string name="reiniciar">Reiniciar</string>
     <string name="pausar">Pausar</string>
+    <string name="fecha_actual">Fecha actual</string>
+    <string name="agenda">Agenda</string>
+    <string name="mis_eventos">Mis eventos</string>
 </resources>
