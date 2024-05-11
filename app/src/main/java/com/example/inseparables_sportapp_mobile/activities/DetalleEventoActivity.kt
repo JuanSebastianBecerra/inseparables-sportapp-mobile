@@ -3,8 +3,11 @@ package com.example.inseparables_sportapp_mobile.activities
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.ListView
 import android.widget.TextView
 import android.widget.Toast
@@ -31,6 +34,7 @@ class DetalleEventoActivity : AppCompatActivity() {
     lateinit var textOrganizador: TextView
     lateinit var textDescripcion: TextView
     lateinit var listServiciosEvento: ListView
+    lateinit var botonAgendar: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +44,7 @@ class DetalleEventoActivity : AppCompatActivity() {
         loadToken()
         llamarDetalleEvento()
         llamarServiciosPorEvento()
+        asignarEventoAUsuario()
     }
 
     fun loadToken() {
@@ -136,6 +141,34 @@ class DetalleEventoActivity : AppCompatActivity() {
                 headersParams as HashMap<String, String>
             )
         )
+    }
+
+    private fun asignarEventoAUsuario() {
+        botonAgendar = findViewById(R.id.botonAgendarEvento)
+        botonAgendar.setOnClickListener {
+            val headersParams: MutableMap<String, String> = HashMap()
+            headersParams["Authorization"] = "Bearer $token"
+            val postParams = mapOf<String, Any>()
+            volleyBroker.instance.add(
+                VolleyBroker.postRequestWithHeaders(
+                    "${Constants.BASE_URL_ADMINISTRACION}/deportista/evento/${idEvento}",
+                    JSONObject(postParams),
+                    {response ->
+                        Toast.makeText(this, response.getString("respuesta"),
+                            Toast.LENGTH_LONG).show();
+                        Handler(Looper.getMainLooper()).postDelayed({
+                            this.finish()
+                        }, 2000)
+                    },
+                    {
+                        Log.d("TAG", it.toString())
+                        Toast.makeText(this, "Error al registrar el entrenamiento",
+                            Toast.LENGTH_LONG).show();
+                    },
+                    headersParams as HashMap<String, String>
+                ))
+        }
+
     }
 
     @SuppressLint("SetTextI18n")
