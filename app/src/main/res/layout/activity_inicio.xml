@@ -6,18 +6,28 @@
     android:layout_height="match_parent"
     tools:context=".activities.InicioActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <TextView
+            android:id="@+id/textSportApp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/app_name"
             android:textSize="40sp"
             tools:ignore="MissingConstraints" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinnerIdiomas"
+            android:layout_marginTop="40dp"
+            android:layout_marginStart="30dp"
+            android:layout_below="@+id/textSportApp"
+            tools:ignore="MissingConstraints" />
+
+    </RelativeLayout>
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navSidebar"

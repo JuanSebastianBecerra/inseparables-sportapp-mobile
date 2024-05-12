@@ -7,6 +7,6 @@ internal object Constants {
     const val SHARED_PREFERENCES_KEY = "MyCredentials"
     const val TOKEN_KEY = "access_token"
     const val ROL_KEY = "rol"
-    const val SERVICIO_SELECCIONADO_KEY = "id_servicio_seleccionado";
-    const val EVENTO_SELECCIONADO_KEY = "id_evento_seleccionado";
+    const val SERVICIO_SELECCIONADO_KEY = "id_servicio_seleccionado"
+    const val EVENTO_SELECCIONADO_KEY = "id_evento_seleccionado"
 }
