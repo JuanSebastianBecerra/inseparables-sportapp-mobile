@@ -73,16 +73,24 @@ class InicioActivity : AppCompatActivity() {
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             spinnerIdiomas.adapter = adapter
         }
+        spinnerIdiomas.setSelection(0)
         spinnerIdiomas.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onNothingSelected(parent: AdapterView<*>?) {
 
             }
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 val lenguajeSeleccionado = parent?.getItemAtPosition(position)
-                if (lenguajeSeleccionado == "Spanish" || lenguajeSeleccionado == "Español"){
-                    setLocale(this@InicioActivity, "es")
-                }else if (lenguajeSeleccionado == "English" || lenguajeSeleccionado == "Inglés"){
-                    setLocale(this@InicioActivity, "en")
+                println(lenguajeSeleccionado)
+                if (lenguajeSeleccionado != null) {
+                    if (lenguajeSeleccionado == "Spanish" || lenguajeSeleccionado == "Español"){
+                        setLocale(this@InicioActivity, "es")
+                        finish()
+                        startActivity(intent)
+                    }else if (lenguajeSeleccionado == "English" || lenguajeSeleccionado == "Inglés"){
+                        setLocale(this@InicioActivity, "en")
+                        finish()
+                        startActivity(intent)
+                    }
                 }
             }
 

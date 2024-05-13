@@ -44,7 +44,9 @@
     <string name="fecha_actual">Current date</string>
     <string name="agenda">Calendar</string>
     <string name="mis_eventos">My events</string>
+    <string name="idioma">Language: </string>
     <string-array name="idiomas">
+        <item>Select ...</item>
         <item>Spanish</item>
         <item>English</item>
     </string-array>

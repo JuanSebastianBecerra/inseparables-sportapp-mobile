@@ -43,7 +43,9 @@
     <string name="fecha_actual">Fecha actual</string>
     <string name="agenda">Agenda</string>
     <string name="mis_eventos">Mis eventos</string>
+    <string name="idioma">Idioma: </string>
     <string-array name="idiomas">
+        <item>Seleccione</item>
         <item>Español</item>
         <item>Inglés</item>
     </string-array>

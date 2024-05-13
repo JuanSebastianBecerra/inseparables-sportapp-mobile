@@ -1,5 +1,6 @@
 package com.example.inseparables_sportapp_mobile.activities
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -15,6 +16,7 @@ import com.example.inseparables_sportapp_mobile.comunes.Constants.SHARED_PREFERE
 import com.example.inseparables_sportapp_mobile.comunes.Constants.TOKEN_KEY
 import com.example.inseparables_sportapp_mobile.comunes.VolleyBroker
 import org.json.JSONObject
+import java.util.*
 
 class AutenticacionActivity : AppCompatActivity() {
     lateinit var volleyBroker: VolleyBroker
@@ -23,6 +25,7 @@ class AutenticacionActivity : AppCompatActivity() {
     lateinit var txtContra: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setLocale(this@AutenticacionActivity, "es")
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_autenticacion)
         volleyBroker = VolleyBroker(this.applicationContext)
@@ -60,5 +63,16 @@ class AutenticacionActivity : AppCompatActivity() {
             ))
         }
 
+    }
+
+    private fun setLocale(activity: Activity, idioma: String){
+        val local = Locale(idioma)
+        Locale.setDefault(local)
+
+        val resources = activity.resources
+
+        val configuration = resources.configuration
+        configuration.setLocale(local)
+        resources.updateConfiguration(configuration, resources.displayMetrics)
     }
 }
