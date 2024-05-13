@@ -61,7 +61,6 @@ class AgendaActivity : AppCompatActivity() {
             VolleyBroker.getRequest(
                 "${Constants.BASE_URL_ADMINISTRACION}/eventos-deportista",
                 { response ->
-                    println(response)
                     var jsonRespuestaServicios: JSONObject? = null;
                     try {
                         jsonRespuestaServicios = JSONObject(response)
