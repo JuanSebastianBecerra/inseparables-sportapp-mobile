@@ -59,7 +59,7 @@ class AgendaActivity : AppCompatActivity() {
         headersParams["Authorization"] = "Bearer $token"
         volleyBroker.instance.add(
             VolleyBroker.getRequest(
-                "${Constants.BASE_URL_ADMINISTRACION}/eventos",
+                "${Constants.BASE_URL_ADMINISTRACION}/eventos-deportista",
                 { response ->
                     var jsonRespuestaServicios: JSONObject? = null;
                     try {
