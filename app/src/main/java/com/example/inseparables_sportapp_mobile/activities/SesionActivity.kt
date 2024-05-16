@@ -1,12 +1,17 @@
 package com.example.inseparables_sportapp_mobile.activities
 
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.os.SystemClock
 import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
 import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.inseparables_sportapp_mobile.R
 import com.example.inseparables_sportapp_mobile.comunes.Constants
 import com.example.inseparables_sportapp_mobile.comunes.VolleyBroker
@@ -64,6 +69,14 @@ class SesionActivity : AppCompatActivity() {
                 ejecutandose = true
                 botonIniciarTerminar.text = getString(R.string.finalizar)
                 servicioIniciarSesion()
+                mostrarDialog(getString(R.string.sugerencia_alimenticia_1))
+                cronometro.setOnChronometerTickListener {
+                    when (it.text) {
+                        "00:30" -> mostrarDialog(getString(R.string.sugerencia_alimenticia_2))
+                        "01:00" -> mostrarDialog(getString(R.string.sugerencia_alimenticia_3))
+                        "01:30" -> mostrarDialog(getString(R.string.sugerencia_alimenticia_4))
+                    }
+                }
             }
         }
     }
@@ -112,11 +125,29 @@ class SesionActivity : AppCompatActivity() {
                 },
                 {
                     Log.d("TAG", it.toString())
-                    Toast.makeText(this, "Error al iniciar la sesión",
+                    Toast.makeText(this, "Error al finalizar la sesión",
                         Toast.LENGTH_LONG).show();
                 },
                 headersParams as HashMap<String, String>
             ))
+    }
+
+
+    private fun mostrarDialog(textoAMostrar: String = ""){
+        val view: View = LayoutInflater.from(this@SesionActivity).inflate(R.layout.alimentacion_dialog, null)
+        val botonAceptar: Button = view.findViewById(R.id.botonAceptarConsejo)
+        val textSugerencia: TextView = view.findViewById(R.id.textConsejoAlimenticio)
+        textSugerencia.text = textoAMostrar
+        val builder: AlertDialog.Builder = AlertDialog.Builder(this@SesionActivity)
+        builder.setView(view)
+        val alertDialog: AlertDialog = builder.create()
+        botonAceptar.findViewById<Button>(R.id.botonAceptarConsejo).setOnClickListener {
+            alertDialog.dismiss()
+        }
+        if (alertDialog.window != null){
+            alertDialog.window!!.setBackgroundDrawable(ColorDrawable(0))
+        }
+        alertDialog.show()
     }
 
 }
