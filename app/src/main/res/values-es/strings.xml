@@ -37,7 +37,11 @@
     <string name="ritmo_maximo">Ritmo cardiaco mánimo</string>
     <string name="iniciar">Iniciar</string>
     <string name="finalizar">Finalizar</string>
-    <string name="default_chronometer">00 : 00</string>
+    <string name="sugerencia_alimenticia_1">Recuerda tomar alimentos alcalinos, ricos en vitaminas y minerales (frutas, verduras y cereales)</string>
+    <string name="sugerencia_alimenticia_2">No debes hacer comidas muy abundantes antes del entrenamiento</string>
+    <string name="sugerencia_alimenticia_3">Debes descansar correctamente y dormir 8 horas cada día</string>
+    <string name="sugerencia_alimenticia_4">Te ayuda tomar suplementos deportivos y batidos de proteínas antes y después del deporte</string>
+    <string name="default_chronometer">Tiempo: </string>
     <string name="guardar">Guardar</string>
     <string name="reiniciar">Reiniciar</string>
     <string name="pausar">Pausar</string>
@@ -45,6 +49,8 @@
     <string name="agenda">Agenda</string>
     <string name="mis_eventos">Mis eventos</string>
     <string name="idioma">Idioma: </string>
+    <string name="consejo_alimenticio">Consejo alimenticio</string>
+    <string name="ok">Ok</string>
     <string-array name="idiomas">
         <item>Seleccione</item>
         <item>Español</item>

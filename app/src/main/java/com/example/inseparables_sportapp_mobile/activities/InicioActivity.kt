@@ -80,7 +80,6 @@ class InicioActivity : AppCompatActivity() {
             }
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 val lenguajeSeleccionado = parent?.getItemAtPosition(position)
-                println(lenguajeSeleccionado)
                 if (lenguajeSeleccionado != null) {
                     if (lenguajeSeleccionado == "Spanish" || lenguajeSeleccionado == "Español"){
                         setLocale(this@InicioActivity, "es")

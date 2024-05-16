@@ -38,7 +38,11 @@
     <string name="ritmo_maximo">Maximum heart rate</string>
     <string name="iniciar">Start</string>
     <string name="finalizar">Finish</string>
-    <string name="default_chronometer">00 : 00</string>
+    <string name="sugerencia_alimenticia_1">Remember to eat alkaline foods, rich in vitamins and minerals (fruits, vegetables and cereals).</string>
+    <string name="sugerencia_alimenticia_2">You should not eat very large meals before training.</string>
+    <string name="sugerencia_alimenticia_3">You should rest properly and sleep 8 hours a day</string>
+    <string name="sugerencia_alimenticia_4">It helps to take sports supplements and protein shakes before and after sport.</string>
+    <string name="default_chronometer">Time: </string>
     <string name="guardar">Save</string>
     <string name="reiniciar">Restart</string>
     <string name="pausar">Pause</string>
@@ -46,6 +50,8 @@
     <string name="agenda">Calendar</string>
     <string name="mis_eventos">My events</string>
     <string name="idioma">Language: </string>
+    <string name="consejo_alimenticio">Diet advice</string>
+    <string name="ok">Ok</string>
     <string-array name="idiomas">
         <item>Select …</item>
         <item>Spanish</item>
