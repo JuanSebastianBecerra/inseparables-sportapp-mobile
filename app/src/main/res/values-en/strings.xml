@@ -31,6 +31,7 @@
     <string name="organizador">Organizer</string>
     <string name="puedes_necesitar">You may need:</string>
     <string name="agendar">Schedule</string>
+    <string name="eliminar_evento">Remove from agenda</string>
     <string name="sesion">Session</string>
     <string name="potencia">Average potency (W)</string>
     <string name="ritmo_minimo">Minimum heart rate</string>
@@ -46,7 +47,7 @@
     <string name="mis_eventos">My events</string>
     <string name="idioma">Language: </string>
     <string-array name="idiomas">
-        <item>Select ...</item>
+        <item>Select …</item>
         <item>Spanish</item>
         <item>English</item>
     </string-array>
