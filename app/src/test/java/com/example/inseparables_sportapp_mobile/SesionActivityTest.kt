@@ -31,4 +31,37 @@ class SesionActivityTest {
             activity.servicioTerminarSesion()
         }
     }
+
+    @Test
+    fun iniciarCronometro() {
+        val activityScenario = ActivityScenario.launch(SesionActivity::class.java)
+        activityScenario.onActivity { activity ->
+            Assert.assertNotNull(activity)
+            activity.botonIniciarTerminar.performClick()
+            Assert.assertEquals(activity.ejecutandose, true)
+        }
+    }
+
+    @Test
+    fun terminarCronometro() {
+        val activityScenario = ActivityScenario.launch(SesionActivity::class.java)
+        activityScenario.onActivity { activity ->
+            Assert.assertNotNull(activity)
+            activity.ejecutandose = true
+            activity.botonIniciarTerminar.performClick()
+            Assert.assertEquals(activity.ejecutandose, false)
+        }
+    }
+
+    @Test
+    fun servicioTerminar() {
+        val activityScenario = ActivityScenario.launch(SesionActivity::class.java)
+        activityScenario.onActivity { activity ->
+            Assert.assertNotNull(activity)
+            activity.ejecutandose = true
+            activity.idSesion = "3d5f00c8-7649-47db-b2e9-2f3b6543909c"
+            activity.botonIniciarTerminar.performClick()
+            Assert.assertEquals(activity.ejecutandose, false)
+        }
+    }
 }
