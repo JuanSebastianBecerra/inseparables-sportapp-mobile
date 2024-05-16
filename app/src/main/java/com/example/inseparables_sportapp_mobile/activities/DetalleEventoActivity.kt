@@ -84,7 +84,7 @@ class DetalleEventoActivity : AppCompatActivity() {
         )
     }
 
-    private fun llamarServicioOrganizador() {
+    fun llamarServicioOrganizador() {
         val headersParams: MutableMap<String, String> = HashMap()
         headersParams["Authorization"] = "Bearer $token"
         volleyBroker.instance.add(
@@ -113,7 +113,7 @@ class DetalleEventoActivity : AppCompatActivity() {
         )
     }
 
-    private fun llamarServiciosPorEvento() {
+    fun llamarServiciosPorEvento() {
         val headersParams: MutableMap<String, String> = HashMap()
         headersParams["Authorization"] = "Bearer $token"
         volleyBroker.instance.add(
