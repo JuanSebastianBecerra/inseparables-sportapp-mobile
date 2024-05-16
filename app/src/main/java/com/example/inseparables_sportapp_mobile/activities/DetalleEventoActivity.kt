@@ -211,7 +211,7 @@ class DetalleEventoActivity : AppCompatActivity() {
                             Array<Evento>::class.java
                         ).toList()
                     )
-                    validateEventoAsignado()
+                    validarEventoAsignado()
                 },
                 {
                     Log.d("TAG", it.toString())
@@ -225,7 +225,7 @@ class DetalleEventoActivity : AppCompatActivity() {
         )
     }
 
-    fun validateEventoAsignado(){
+    fun validarEventoAsignado(){
         estaAsignado = eventosDeportista.any{ evento -> evento.id == idEvento }
         botonAgendar.text = if (estaAsignado) getString(R.string.eliminar_evento) else getString(R.string.agendar)
     }
