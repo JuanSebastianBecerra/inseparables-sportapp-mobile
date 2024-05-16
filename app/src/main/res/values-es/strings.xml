@@ -30,6 +30,7 @@
     <string name="organizador">Organizador</string>
     <string name="puedes_necesitar">Puedes necesitar:</string>
     <string name="agendar">Agendar</string>
+    <string name="eliminar_evento">Eliminar de la agenda</string>
     <string name="sesion">Sesión</string>
     <string name="potencia">Potencia media (W)</string>
     <string name="ritmo_minimo">Ritmo cardiaco mínimo</string>
