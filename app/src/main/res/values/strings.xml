@@ -51,6 +51,7 @@
     <string name="idioma">Idioma:</string>
     <string name="consejo_alimenticio">Consejo alimenticio</string>
     <string name="ok">Ok</string>
+    <string name="eventos_por_proximidad">Eventos por proximidad</string>
     <string-array name="idiomas">
         <item>Seleccione</item>
         <item>Español</item>
