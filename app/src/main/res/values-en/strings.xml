@@ -52,6 +52,7 @@
     <string name="idioma">Language: </string>
     <string name="consejo_alimenticio">Diet advice</string>
     <string name="ok">Ok</string>
+    <string name="eventos_por_proximidad">Close events</string>
     <string-array name="idiomas">
         <item>Select …</item>
         <item>Spanish</item>
