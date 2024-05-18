@@ -155,7 +155,8 @@ class SesionActivity : AppCompatActivity() {
                     if (rutinaAlimenticia.id.isNotEmpty()){
                         val intentRutinaAlimenticia = Intent(this@SesionActivity, RutinaAlimenticiaActivity::class.java)
                         this.finish()
-                        intentRutinaAlimenticia.putExtra(Constants.RUTINA_ALIMENTICIA_KEY, rutinaAlimenticia)
+                        val jsonUserData = Gson().toJson(rutinaAlimenticia)
+                        intentRutinaAlimenticia.putExtra(Constants.RUTINA_ALIMENTICIA_KEY, jsonUserData)
                         startActivity(intentRutinaAlimenticia)
                     }
                 },

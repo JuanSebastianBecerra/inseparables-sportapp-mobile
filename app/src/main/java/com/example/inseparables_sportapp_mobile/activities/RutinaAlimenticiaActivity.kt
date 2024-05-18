@@ -12,6 +12,7 @@ import com.example.inseparables_sportapp_mobile.R
 import com.example.inseparables_sportapp_mobile.comunes.Constants
 import com.example.inseparables_sportapp_mobile.comunes.VolleyBroker
 import com.example.inseparables_sportapp_mobile.entities.RutinaAlimenticia
+import com.google.gson.Gson
 import org.json.JSONObject
 
 class RutinaAlimenticiaActivity : AppCompatActivity() {
@@ -31,8 +32,10 @@ class RutinaAlimenticiaActivity : AppCompatActivity() {
         setContentView(R.layout.activity_rutina_alimenticia)
         volleyBroker = VolleyBroker(this.applicationContext)
         loadToken()
-        rutinaAlimenticia =
-            intent.getParcelableExtra(Constants.RUTINA_ALIMENTICIA_KEY, RutinaAlimenticia::class.java)!!
+        val jsonRutinaData = intent.getStringExtra(Constants.RUTINA_ALIMENTICIA_KEY)
+        if (jsonRutinaData != null) {
+            rutinaAlimenticia = Gson().fromJson(jsonRutinaData, RutinaAlimenticia::class.java)
+        }
         iniciarComponentes()
     }
 
@@ -45,7 +48,9 @@ class RutinaAlimenticiaActivity : AppCompatActivity() {
         botonGuardar = findViewById(R.id.guardarRutinaAlimenticia)
         botonCancelar = findViewById(R.id.cancelarRutinaAlimenticia)
         textTitleRutina = findViewById(R.id.textTitleRutinaAlimenticia)
-        textTitleRutina.text = rutinaAlimenticia.nombre
+        if (this::rutinaAlimenticia.isInitialized) {
+            textTitleRutina.text = rutinaAlimenticia.nombre
+        }
         crearAdapterProductosRutina()
         botonGuardar.setOnClickListener {
             solicitarRutinaAlimanticia()
@@ -55,8 +60,12 @@ class RutinaAlimenticiaActivity : AppCompatActivity() {
 
     fun crearAdapterProductosRutina(){
         listaProductos = findViewById(R.id.listaAlimentosRutina)
-        val serviciosAdapter = ArrayAdapter(applicationContext,android.R.layout.simple_list_item_1,rutinaAlimenticia.productos.map { it.nombre })
-        listaProductos.adapter = serviciosAdapter
+        if (this::rutinaAlimenticia.isInitialized) {
+            val serviciosAdapter =
+                ArrayAdapter(applicationContext, android.R.layout.simple_list_item_1,
+                    rutinaAlimenticia.productos.map { it.nombre })
+            listaProductos.adapter = serviciosAdapter
+        }
     }
 
     fun solicitarRutinaAlimanticia(){
