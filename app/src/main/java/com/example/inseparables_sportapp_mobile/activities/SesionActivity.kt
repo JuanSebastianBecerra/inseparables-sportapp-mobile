@@ -1,5 +1,6 @@
 package com.example.inseparables_sportapp_mobile.activities
 
+import android.content.Intent
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.os.Handler
@@ -15,6 +16,10 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.inseparables_sportapp_mobile.R
 import com.example.inseparables_sportapp_mobile.comunes.Constants
 import com.example.inseparables_sportapp_mobile.comunes.VolleyBroker
+import com.example.inseparables_sportapp_mobile.entities.Evento
+import com.example.inseparables_sportapp_mobile.entities.RutinaAlimenticia
+import com.example.inseparables_sportapp_mobile.entities.Socio
+import com.google.gson.Gson
 import org.json.JSONObject
 
 class SesionActivity : AppCompatActivity() {
@@ -28,6 +33,7 @@ class SesionActivity : AppCompatActivity() {
     lateinit var editRitmoMaximo: EditText
     lateinit var botonIniciarTerminar: Button
     lateinit var cronometro: Chronometer
+    lateinit var rutinaAlimenticia: RutinaAlimenticia
     var idSesion: String = ""
     var ejecutandose = false
 
@@ -119,14 +125,45 @@ class SesionActivity : AppCompatActivity() {
                 {response ->
                     Toast.makeText(this, response.getString("respuesta"),
                         Toast.LENGTH_LONG).show();
-                    Handler(Looper.getMainLooper()).postDelayed({
-                        this.finish()
-                    }, 2000)
+                    obtenerRutinaAlimenticia()
                 },
                 {
                     Log.d("TAG", it.toString())
                     Toast.makeText(this, "Error al finalizar la sesión",
                         Toast.LENGTH_LONG).show();
+                },
+                headersParams as HashMap<String, String>
+            ))
+    }
+
+    fun obtenerRutinaAlimenticia(){
+        val headersParams: MutableMap<String, String> = HashMap()
+        headersParams["Authorization"] = "Bearer $token"
+        val postParams = mapOf<String, Any>(
+            "potencia" to editPotencia.text.toString(),
+            "min_ritmo" to editRitmoMinimo.text.toString(),
+            "max_ritmo" to editRitmoMaximo.text.toString(),
+        )
+        volleyBroker.instance.add(
+            VolleyBroker.getRequestWithHeaders(
+                "${Constants.BASE_URL_DEPORTE}/sesion-entrenamiento/rutina-alimenticia ",
+                JSONObject(postParams),
+                {response ->
+                    val gson = Gson()
+                    rutinaAlimenticia = gson.fromJson(response.toString(), RutinaAlimenticia::class.java)
+                    if (response.getString("id").isNotEmpty()){
+                        val intentRutinaAlimenticia = Intent(this@SesionActivity, RutinaAlimenticiaActivity::class.java)
+                        intentRutinaAlimenticia.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP;
+                        intentRutinaAlimenticia.putExtra(Constants.RUTINA_ALIMENTICIA_KEY, rutinaAlimenticia)
+                        startActivity(intentRutinaAlimenticia)
+                    }
+                },
+                {
+                    Toast.makeText(this, "Error al obtener la rutina alimenticia",
+                        Toast.LENGTH_LONG).show()
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        this.finish()
+                    }, 2000)
                 },
                 headersParams as HashMap<String, String>
             ))
