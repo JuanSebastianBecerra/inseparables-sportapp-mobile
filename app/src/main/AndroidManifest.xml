@@ -15,7 +15,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".RutinaAlimenticiaActivity"
+            android:name=".activities.RutinaAlimenticiaActivity"
             android:exported="false" />
         <activity
             android:name=".activities.AgendaActivity"

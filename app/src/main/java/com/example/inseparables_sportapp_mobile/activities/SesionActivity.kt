@@ -145,15 +145,16 @@ class SesionActivity : AppCompatActivity() {
             "max_ritmo" to editRitmoMaximo.text.toString(),
         )
         volleyBroker.instance.add(
-            VolleyBroker.getRequestWithHeaders(
+            VolleyBroker.postRequestWithHeaders(
                 "${Constants.BASE_URL_DEPORTE}/sesion-entrenamiento/rutina-alimenticia ",
                 JSONObject(postParams),
                 {response ->
                     val gson = Gson()
-                    rutinaAlimenticia = gson.fromJson(response.toString(), RutinaAlimenticia::class.java)
-                    if (response.getString("id").isNotEmpty()){
+                    println(response.toString())
+                    rutinaAlimenticia = gson.fromJson(response.getString("respuesta"), RutinaAlimenticia::class.java)
+                    if (rutinaAlimenticia.id.isNotEmpty()){
                         val intentRutinaAlimenticia = Intent(this@SesionActivity, RutinaAlimenticiaActivity::class.java)
-                        intentRutinaAlimenticia.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP;
+                        this.finish()
                         intentRutinaAlimenticia.putExtra(Constants.RUTINA_ALIMENTICIA_KEY, rutinaAlimenticia)
                         startActivity(intentRutinaAlimenticia)
                     }
