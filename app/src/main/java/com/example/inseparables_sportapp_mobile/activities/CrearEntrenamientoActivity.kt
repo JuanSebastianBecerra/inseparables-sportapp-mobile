@@ -22,21 +22,21 @@ class CrearEntrenamientoActivity : AppCompatActivity(){
     lateinit var volleyBroker: VolleyBroker
     lateinit var token: String;
 
-    private lateinit var pickTimeFin: Button
-    private lateinit var textPickerFin: TextView
-    private lateinit var pickTimeInicio: Button
-    private lateinit var textPickerInicio: TextView
-    private lateinit var spinnerDeportes: Spinner
-    private lateinit var radioDiario: RadioButton
-    private lateinit var radioSemanal: RadioButton
-    private lateinit var radioFines: RadioButton
-    private lateinit var textoNombre: EditText
-    private lateinit var textoLugar: EditText
-    private lateinit var textoDetalle: EditText
-    private lateinit var botonCancelar: MaterialButton
-    private lateinit var botonGuardar: MaterialButton
+    lateinit var pickTimeFin: Button
+    lateinit var textPickerFin: TextView
+    lateinit var pickTimeInicio: Button
+    lateinit var textPickerInicio: TextView
+    lateinit var spinnerDeportes: Spinner
+    lateinit var radioDiario: RadioButton
+    lateinit var radioSemanal: RadioButton
+    lateinit var radioFines: RadioButton
+    lateinit var textoNombre: EditText
+    lateinit var textoLugar: EditText
+    lateinit var textoDetalle: EditText
+    lateinit var botonCancelar: MaterialButton
+    lateinit var botonGuardar: MaterialButton
 
-    private lateinit var frecuenciaSeleccionada: String;
+    lateinit var frecuenciaSeleccionada: String;
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,12 +53,12 @@ class CrearEntrenamientoActivity : AppCompatActivity(){
         listenerGuardarEntrenamineto()
     }
 
-    private fun loadToken() {
+    fun loadToken() {
         val mPrefs = getSharedPreferences(Constants.SHARED_PREFERENCES_KEY, MODE_PRIVATE)
         token = mPrefs.getString(Constants.TOKEN_KEY, null).toString()
     }
 
-    private fun iniciarComponentes(){
+    fun iniciarComponentes(){
          pickTimeFin = findViewById(R.id.pick_time_hora_fin)
          textPickerFin = findViewById(R.id.preview_hora_fin)
          pickTimeInicio = findViewById(R.id.pick_time_hora_inicio)
@@ -74,7 +74,7 @@ class CrearEntrenamientoActivity : AppCompatActivity(){
          botonGuardar = findViewById(R.id.guardar_button_entrenamiento);
     }
 
-    private fun crearTimePickerHoraInicio() {
+    fun crearTimePickerHoraInicio() {
         pickTimeInicio.setOnClickListener {
             val materialTimePicker: MaterialTimePicker = MaterialTimePicker.Builder()
                 .setTitleText("Selecciona la hora")
@@ -121,7 +121,7 @@ class CrearEntrenamientoActivity : AppCompatActivity(){
         }
     }
 
-    private fun crearTimePickerHoraFin() {
+    fun crearTimePickerHoraFin() {
         pickTimeFin.setOnClickListener {
             val materialTimePicker: MaterialTimePicker = MaterialTimePicker.Builder()
                 .setTitleText("Selecciona la hora")
@@ -168,7 +168,7 @@ class CrearEntrenamientoActivity : AppCompatActivity(){
         }
     }
 
-    private fun crearSpinnerDeportes() {
+    fun crearSpinnerDeportes() {
         ArrayAdapter.createFromResource(
             this,
             R.array.deportes_lista,
@@ -181,28 +181,28 @@ class CrearEntrenamientoActivity : AppCompatActivity(){
 
     }
 
-    private fun iniciarRadios(){
+    fun iniciarRadios(){
         radioDiario.isChecked = true;
-        radioDiario.setOnCheckedChangeListener { buttonView, isChecked ->
+        radioDiario.setOnCheckedChangeListener { _, _ ->
             frecuenciaSeleccionada = "DIARIO"
         }
 
-        radioSemanal.setOnCheckedChangeListener { buttonView, isChecked ->
+        radioSemanal.setOnCheckedChangeListener { _, _ ->
             frecuenciaSeleccionada = "SEMANAL"
         }
 
-        radioFines.setOnCheckedChangeListener { buttonView, isChecked ->
+        radioFines.setOnCheckedChangeListener { _, _ ->
             frecuenciaSeleccionada = "FINES_SEMANA"
         }
     }
 
-    private fun listenerCancelarEntrenamiento(){
+    fun listenerCancelarEntrenamiento(){
         botonCancelar.setOnClickListener {
             this.finish()
         }
     }
 
-    private fun listenerGuardarEntrenamineto(){
+    fun listenerGuardarEntrenamineto(){
         botonGuardar.setOnClickListener {
             val headersParams: MutableMap<String, String> = HashMap()
             headersParams["Authorization"] = "Bearer $token"

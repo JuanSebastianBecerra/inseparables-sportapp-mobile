@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SportApp</string>
+    <string name="ingresar">Login</string>
+    <string name="usuario">User</string>
+    <string name="contrasenia">Password</string>
+    <string name="abrir">Open</string>
+    <string name="cerrar">Close</string>
+    <string name="inicio">Home</string>
+    <string name="cerrar_sesion">Logout</string>
+    <string name="servicios">Services</string>
+    <string name="nombre">Name</string>
+    <string name="descripcion">Description</string>
+    <string name="agregar">Add</string>
+    <string name="hora_inicio">Start time</string>
+    <string name="preview_hora_inicio">Start time …</string>
+    <string name="hora_fin">Finish time</string>
+    <string name="preview_hora_fin">Finish time …</string>
+    <string name="lugar">Place</string>
+    <string name="detalle">Details</string>
+    <string name="diario">Diary</string>
+    <string name="semanal">Weekly</string>
+    <string name="fines_de_semana">Weekends</string>
+    <string name="frecuencia">Frequency</string>
+    <string-array name="deportes_lista">
+        <item>Cycling</item>
+        <item>Running</item>
+    </string-array>
+    <string name="entrenamientos">Training</string>
+    <string name="eventos">Events</string>
+    <string name="organizador">Organizer</string>
+    <string name="puedes_necesitar">You may need:</string>
+    <string name="agendar">Schedule</string>
+    <string name="eliminar_evento">Remove from agenda</string>
+    <string name="sesion">Session</string>
+    <string name="potencia">Average potency (W)</string>
+    <string name="ritmo_minimo">Minimum heart rate</string>
+    <string name="ritmo_maximo">Maximum heart rate</string>
+    <string name="iniciar">Start</string>
+    <string name="finalizar">Finish</string>
+    <string name="sugerencia_alimenticia_1">Remember to eat alkaline foods, rich in vitamins and minerals (fruits, vegetables and cereals).</string>
+    <string name="sugerencia_alimenticia_2">You should not eat very large meals before training.</string>
+    <string name="sugerencia_alimenticia_3">You should rest properly and sleep 8 hours a day</string>
+    <string name="sugerencia_alimenticia_4">It helps to take sports supplements and protein shakes before and after sport.</string>
+    <string name="default_chronometer">Time: </string>
+    <string name="guardar">Save</string>
+    <string name="reiniciar">Restart</string>
+    <string name="pausar">Pause</string>
+    <string name="fecha_actual">Current date</string>
+    <string name="agenda">Calendar</string>
+    <string name="mis_eventos">My events</string>
+    <string name="idioma">Language: </string>
+    <string name="consejo_alimenticio">Diet advice</string>
+    <string name="ok">Ok</string>
+    <string name="eventos_por_proximidad">Close events</string>
+    <string name="rutina_alimenticia_default">Dietary routine</string>
+    <string name="solicitar_productos">Would you like to order the dietary routine?</string>
+    <string-array name="idiomas">
+        <item>Select …</item>
+        <item>Spanish</item>
+        <item>English</item>
+    </string-array>
+</resources>
