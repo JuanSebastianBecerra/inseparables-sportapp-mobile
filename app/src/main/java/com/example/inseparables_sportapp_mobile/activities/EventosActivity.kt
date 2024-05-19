@@ -94,7 +94,6 @@ class EventosActivity : AppCompatActivity() {
                         Log.e("JSON", "Error: \"$e\"");
                     }
                     val gson = Gson()
-                    println("${Constants.BASE_URL_ADMINISTRACION}/eventos-cercanos?latitud=${jsonRespuestaDireccion?.getString("ubicacion_latitud")}&longitud=${jsonRespuestaDireccion?.getString("ubicacion_longitud")}")
                     volleyBroker.instance.add(
                         VolleyBroker.getRequest(
                             "${Constants.BASE_URL_ADMINISTRACION}/eventos-cercanos?latitud=${jsonRespuestaDireccion?.getString("ubicacion_latitud")}&longitud=${jsonRespuestaDireccion?.getString("ubicacion_longitud")}",

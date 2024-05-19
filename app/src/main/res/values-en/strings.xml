@@ -53,6 +53,8 @@
     <string name="consejo_alimenticio">Diet advice</string>
     <string name="ok">Ok</string>
     <string name="eventos_por_proximidad">Close events</string>
+    <string name="rutina_alimenticia_default">Dietary routine</string>
+    <string name="solicitar_productos">Would you like to order the dietary routine?</string>
     <string-array name="idiomas">
         <item>Select …</item>
         <item>Spanish</item>

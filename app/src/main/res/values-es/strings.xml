@@ -52,6 +52,8 @@
     <string name="consejo_alimenticio">Consejo alimenticio</string>
     <string name="ok">Ok</string>
     <string name="eventos_por_proximidad">Eventos por proximidad</string>
+    <string name="rutina_alimenticia_default">Rutina alimenticia</string>
+    <string name="solicitar_productos">¿Desea solicitar la rutina alimenticia?</string>
     <string-array name="idiomas">
         <item>Seleccione</item>
         <item>Español</item>

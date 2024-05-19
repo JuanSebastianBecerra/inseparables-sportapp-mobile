@@ -9,4 +9,5 @@ internal object Constants {
     const val ROL_KEY = "rol"
     const val SERVICIO_SELECCIONADO_KEY = "id_servicio_seleccionado"
     const val EVENTO_SELECCIONADO_KEY = "id_evento_seleccionado"
+    const val RUTINA_ALIMENTICIA_KEY = "RUTINA_ALIMENTICIA"
 }
