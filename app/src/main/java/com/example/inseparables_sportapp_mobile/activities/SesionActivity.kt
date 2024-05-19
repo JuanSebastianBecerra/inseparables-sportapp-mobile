@@ -150,7 +150,6 @@ class SesionActivity : AppCompatActivity() {
                 JSONObject(postParams),
                 {response ->
                     val gson = Gson()
-                    println(response.toString())
                     rutinaAlimenticia = gson.fromJson(response.getString("respuesta"), RutinaAlimenticia::class.java)
                     if (rutinaAlimenticia.id.isNotEmpty()){
                         val intentRutinaAlimenticia = Intent(this@SesionActivity, RutinaAlimenticiaActivity::class.java)
